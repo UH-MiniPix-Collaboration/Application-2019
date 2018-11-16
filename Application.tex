@@ -1,0 +1,105 @@
+\documentclass[aps,superscriptaddress,floatfix,nofootinbib,showpacs,amsmath,amssymb,altaffilletter,floatfix,onecolumn]{revtex4-1}
+
+\input{def.tex}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage[title]{appendix}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\thepage}{}
+\renewcommand{\thepage}{\arabic{page}}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+\newcommand{\hasplogo}{\includegraphics[width=0.08\linewidth]{Figures/logo.pdf}} %Header
+
+\makeatletter
+\def\p@subsection{}
+\makeatother
+\makeatletter
+\def\p@subsubsection{}
+\makeatother
+
+\fancyhf{}
+\pagestyle{fancy}
+\headheight 50pt
+\lhead{\hasplogo} %Header
+\chead{\vspace*{-2cm}\Large\textbf{HASP Payload Application 2018}} %Header
+\rfoot{\thepage}
+
+\parskip = 6pt %changes spacing between paragraphs
+
+
+\begin{document}
+
+\title{University of Houston HASP 2019 Application}
+
+\begin{abstract}
+  \begin{center}
+    {\bf Abstract}
+  \end{center}
+  
+  This is the abstract.
+  
+  \newpage %Breaks page for the Table of Contents.
+\end{abstract}
+
+\input{Sections/Authors.tex}
+\setlength{\parindent}{1em}
+\setdefaultleftmargin{1em}{1em}{}{}{}{}
+\setcounter{page}{0}\thispagestyle{empty}
+\maketitle
+\onecolumngrid
+\setcounter{tocdepth}{2}
+\setcounter{page}{0}\thispagestyle{empty}
+\tableofcontents
+\setcounter{page}{0}\thispagestyle{empty}
+\newpage
+
+%---
+%Section: Mission Overview w/ Subsections Mission Statement and Hypotheses
+	\input{Sections/Introduction.tex}
+	%Scientific Background
+	\section{Background}
+		\input{Astrobiology/IntroAstro.tex}
+		\input{Radiation/IntroRad.tex}
+
+%Payload Design and Operation
+	%Structure Description
+		\input{Sections/Hardware.tex}
+		\input{Astrobiology/DesignAstro.tex}
+		\input{Radiation/DesignRad.tex}
+		\input{Sections/HASPInterface.tex}
+	%Thermal Control Plan
+		\input{Sections/ThermalControl.tex}
+	%Power Budget & Weight Budget
+		\input{Sections/PWBudget.tex}
+
+
+%Testing and Simulation
+\input{Sections/Procedures.tex}
+%Decontamination Preflight & Post-flight
+	%Objectives
+	%Sterilization Preflight/Postflight
+
+%In-Flight Failure
+\input{Sections/Failure.tex}
+
+%Project Management
+\input{Sections/Management.tex}
+	%Includes the following:
+		%Team Structure
+		%Timeline
+		%Funding
+
+\input{Sections/AppendixA.tex}
+	
+%References
+\input{Bib.tex}
+
+
+\end{document}

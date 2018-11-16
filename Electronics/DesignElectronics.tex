@@ -1,0 +1,35 @@
+\subsection{RESU Design}
+\label{sec:ElectronicsDesign}
+
+\subsubsection{Overview}
+
+For this mission, we will again use RESU (Real-Time Environmental Sensing Unit), our flight computer to manage flight operations and send and receive commands from the ground. RESU is composed of two components: a Raspberry Pi 3 (RP3) and an Arduino Mega (Arduino) which interface via USB. The RESUs primary purpose during the flight will be to monitor environmental conditions and control the astrobiology systems. It will monitor temperature of the various subsystems and the humidity and pressure of the environment throughout the flight. All recorded data will continuously be written to an SD card mounted on a shield on top of the Arduino. It will also accept discrete commands from the HASP systems to turn the astrobiology collection system on and off.
+
+ During our last flight we only had one mechanism for storing data with no redundancy. This means that if one of our storage devices had been damaged or corrupted during flight, all of our data would have been lost. In order to harden our payload and ensure the safety of our data we will now store redundant copies of our data. One will be stored on the SD card directly on the Arduino and the other will be transferred to the RP3 for storage.
+
+\subsubsection{The Sensors}
+
+Our payload will utilize eight thermistors to measure temperature at various points in our payload. The decision to use thermistors was based primarily on the performance of the analog temperature sensors during our 2017 flight, during which several of those sensors had slight malfunctions. Thermistors are able to accurately measure temperature in the range \SIrange{-55}{125}{\celsius} and should therefore be adequate for the conditions in the stratosphere. Pressure will be recorded from two identical digital pressure sensors in order to ensure accuracy and should be able to record accurately in the range \SIrange{0}{14000}{\milli\bara}. Finally, humidity will be measured from a basic analog humidity sensor. All sensor data will be UTC timestamped via the onboard real time clock and recorded to the SD card.
+
+\begin{table}[h!]
+\centering
+\caption{Table of sensors that compose RESU}
+\label{tab:Sensors}
+\bigskip
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{1}{|c|}{\bfseries Sensor} & {\bfseries Quantity} & {\bfseries Platform} & {\bfseries Purpose} \\
+\hline
+    Temperature Sensors         		& 6 & Arduino  		& Record temperature measurements  \\ \hline
+    Pressure        				& 2 & Arduino 		& Record pressure measurements \\ \hline
+    Inertial Measurement Unit       		& 1 & RP3    		& Record IMU Data in 9 degrees of freedom \\ \hline    
+    Real Time Clock 				& 2 & Arduino/RP3 	& Record temperature compensated timestamps in CT \\\hline
+    Humidity        				& 1 & Arduino 		& Record atmospheric humidity levels \\ \hline
+    MiniPIX         				& 1 & RP3     		& Cosmic ray detector \\ \hline
+\end{tabular}
+\end{table}
+
+
+\subsubsection{Space Constraints}
+Since much of the space inside of our payload will be taken up by the pumps and clean box from the astrobiology systems, we need to design our electronics to be relatively compact. We will again only use one RP3 to both interface with MiniPIX and store sensor data from the Arduino.  Also, in order to reduce the space required for the interface between the Arduino and all of the payload's sensors, we will use two layers of proto-shields to more effectively utilize vertical space. The RTC, pressure and humidity sensors will be mounted directly on the first shield while the temperature sensors will be mounted on the top most shield. 
+

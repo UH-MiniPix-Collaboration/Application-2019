@@ -1,20 +1,31 @@
 \subsection{Radiation}
-\label{sec:RadiationBackground}
-
-The study of the biological effects of cosmic radiation in space or in the atmosphere is important for human space travel.  Long term space travel necessarily requires humans and other biological specimens to be exposed to high levels of radiation for extended periods of time, so understanding the amount of radiation exposure experienced from galactic cosmic rays (GCRs) has important applications for flights to Mars and beyond. Also, the understanding of cosmic rays specifically in Earth's atmosphere has important applications to commercial airplane flights as they generally operate at an altitude with far higher levels of radiation exposure than at the surface of Earth. 
-
-Our goals for the radiation portion of our payload are two fold: to measure radiation levels at various layers in the atmosphere to determine its possible effects on microorganisms, and to use a MiniPIX particle detector to gather data from GCRs in the atmosphere. Using the results from the previous iteration of SORA~\cite{SORA} as a baseline, we know the capabilites of the MiniPIX, and we will make several design changes to improve the efficiency of our system and to produce more in-depth data analysis. We ultimately seek to further previous research utilizing MediPIX/TimePIX devices for measuring GCRs on stratospheric balloon flights~\cite{bexus}. 
+\label{subsec:RadiationBackground}
 
 
+\subsubsection{Cosmic Rays}
+Understanding the biological effect of radiation on humans is cruicial for successful space flight.
+By observing the environment in which astronauts reside, information regarding the conditions which induce the biological changes can be gathered.
+Among this information is dosage of various particles.
+In the upper atmosphere, primary particles, which consist largely of protons (p\textsuperscript{+}) and ionized atomic nuclei \cite{Frank}, collide with the nuclei of air molecules and can induce air showers.
+These air showers produce secondary particles, which consist of positrons/electrons (e\textsuperscript{$\pm$}), neutrons(n), muons($\mu$\textsuperscript{$\pm$}), pions ($\pi$\textsuperscript{$\pm$}), and various other hadrons.
+The primary particles of interest are Galactic Cosmic Rays (GCRs), which originate outside of the solar system but within the Milky Way Galaxy and typically have been accelerated to nearly the speed of light \cite{GCRs}.
 
-%
-%	The biological effectiveness of
-%Galactic Cosmic Rays (GCR) in space has been studied on
-%microorganisms through the use of computer modeled radiobiological
-%systems using Monte Carlo simulations. With an increase in intensity
-%of GCR's, the number and magnitude of damage in cells increase 5. Such
-%damage occuring from GCRs can effect the biological system.
-%
+The results from the previous missions have confirmed the successful application of the MiniPIX as a dosimeter through the idenification of the Regener-Pfotzer Maximum. This maximum is the altitude at which ionizing radiation reaches its peak \cite{Regener}. The value of this altitude depends on various environmental factors, but it is around \SI{18}{\kilo\meter}. With this confirmation, the MiniPIX will remain the primary tool we will use to measure radiation.
+
+Primary particles can induce an air shower by colliding with the nucleus of any atom or particle.
+This poses a potential threat to astronauts residing in spacecrafts, as the materials in the spacecraft's structure can induce an air shower and thus bombard astronauts with radiation.
+By using a MiniPIX to measure the radiation outside of as well as within a structure emulating a module from the Internation Space Station, we can observe the environment that current astronauts live in and how the structure changes the radiation field.
+Additionaly, the measurements outside of the structure will give information as to the conditions in which atmospheric extremophiles reside.
+
+
+\subsubsection{Organic Solar Cells}
+<<TAYLOR: Include some of the history/theory/emerging importance of organic solar cells as well as what we will be observing with them in the stratosphere>>
+
+
+%\subsubsection{Solar Radiation}
+%The ultraviolet (UV) spectrum is composed of UVC (\SIrange{200}{280}{\nano\meter}) with only \SI{0.5}{\percent} of the entire solar spectrum, 1.5\% of
+%UVB (\SIrange{280}{315}{\nano\meter}) and UVA (\SIrange{315}{400}{\nano\meter}), which contributes to \SI{6.3}{\percent}~\cite{uv_irradiance}. UVB and UVC are the main contributors in highly lethal solar radiation to microorganisms\cite{UVonDNA}. DNA is prone to high absorption levels at those wavelengths, often causing inactivation and mutation.  Therefore, understanding the exposure of microbes in to UV radiation is quite important.
+
 %In the atmosphere ionizing radiation does not always increase with altitude. As
 %primary GCRs such as high energy protons, alpha particles, and 
 %heavy ions collide with atoms in the atmosphere they begin to shatter into secondary
@@ -43,8 +54,4 @@ Our goals for the radiation portion of our payload are two fold: to measure radi
 %[]. The combination of these affects results in a variability in the
 %location of the maximum as well as the existene of this maximum as
 %ooposed to an ever-increasing intensity.
-
-%\subsubsection{Solar Radiation}
-%The ultraviolet (UV) spectrum is composed of UVC (\SIrange{200}{280}{\nano\meter}) with only \SI{0.5}{\percent} of the entire solar spectrum, 1.5\% of
-%UVB (\SIrange{280}{315}{\nano\meter}) and UVA (\SIrange{315}{400}{\nano\meter}), which contributes to \SI{6.3}{\percent}~\cite{uv_irradiance}. UVB and UVC are the main contributors in highly lethal solar radiation to microorganisms\cite{UVonDNA}. DNA is prone to high absorption levels at those wavelengths, often causing inactivation and mutation.  Therefore, understanding the exposure of microbes in to UV radiation is quite important.
 

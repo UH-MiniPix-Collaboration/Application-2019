@@ -63,41 +63,34 @@
 
 %---
 %Section: Mission Overview w/ Subsections Mission Statement and Hypotheses
-	\input{Sections/Introduction.tex}
-	\section{Background}
-		\input{Astrobiology/IntroAstro.tex}
-		\input{Radiation/IntroRad.tex}
+\input{Sections/Introduction.tex}
+\section{Background}
+    \input{Astrobiology/IntroAstro.tex}
+    \input{Radiation/IntroRad.tex}
 
 %Payload Design and Operation
-	%Structure Description
-		\input{Sections/Hardware.tex}
-		\input{Astrobiology/DesignAstro.tex}
-		\input{Radiation/DesignRad.tex}
-                \input{Electronics/RESUDesign.tex}
-		\input{Sections/HASPInterface.tex}
-		\input{Sections/ThermalControl.tex}
-		\input{Sections/PWBudget.tex}
+\section{Payload Systems and Operation}
+\label{sec:PayloadSystems}
+    \input{Sections/Hardware.tex}
+    \input{Astrobiology/DesignAstro.tex}
+    \input{Radiation/DesignRad.tex}
+    \input{Electronics/RESUDesign.tex}
 
+\input{Sections/HASPInterface.tex}
+\input{Sections/ThermalControl.tex}
+\input{Sections/PWBudget.tex}
 
-%Testing
+%Procedure: decontamination (pre and post flight)
 \input{Sections/Procedures.tex}
-%Decontamination Preflight & Post-flight
-	%Objectives
-	%Sterilization Preflight/Postflight
-
+                
 %In-Flight Failure
 \input{Sections/Failure.tex}
 
-%Project Management
+%Project Management includes the following: team structure, timeline, funding
 \input{Sections/Management.tex}
-	%Includes the following:
-		%Team Structure
-		%Timeline
-		%Funding
 
 \input{Sections/AppendixA.tex}
 	
-%References
 \input{Bib.tex}
 
 

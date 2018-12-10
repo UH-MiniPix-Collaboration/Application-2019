@@ -2,14 +2,8 @@
 \label{sec:TCP}
 
 
-Based on our previous mission~\cite{SORA}, we opted to have a similar thermal control plan but with a few changes.  To simplify the payload construction and control, we opted for an semi-autonomous temperature monitoring and control system.
+Based on our previous missions~\cite{SORA1}\cite{SORA2}, we have designed a thermal control plan centered around the high-performance devices. The devices that are at highest risk of thermal failure are the RP3 and the two MiniPIX devices. The data from the previous SORA missions strongly suggest that all devices will remain above their lower temperature limit. If a device were to experience thermal failure, it would be by overheating.
 
-The Arduino will monitor the pumps and other devices for overheating. If the Arduino detects that a
-component, such as the pumps, then it will shut down the whole astrobiology system for a certain amount
-of time.
+The temperature of all high-performance devices will be downlinked and monitored by the mission control team. In the case of a device overheating, said device will be shut down until it is safe to resume operations. The RP3 will be considered overheating if the temperature exceeds \SI{85}{\celsius}. A MiniPIX will be considered overheating if the device temperature exceeds \SI{80}{\celsius}.
 
-In the case of our payload experiencing colder temperatures, all of our devices will be able to operate beyond expected temperatures on the flight. Based on our previous mission~\cite{SORA}, we found that heaters were unescessary and that insulation proved to be more than adequate.
-
-The temperature will be checked and recorded periodically for all devices, but it will not be downlinked.
-
-In order to manage the temperature of the  MiniPIX, it will be fitted with the same heatsink configuration as our 2017 flight. The internal temperature of the device will be recorded and downlinked to the flight control team at regular intervals. If the device is beginning to experience temperatures beyond what we would consider safe (above \SI{70}{\celsius}) we can either reset the RP3 controlling the MiniPIX or fully shutdown the entire radiation subsystem.
+In attempt to prevent overheating, each device will be configured with an individual metal heat sink. The RP3's processor will be equipped with a heat sink designed specifically for that device. Using the same technique used on the previous mission, each of the MiniPIX devices will be fixed to a plate of aluminum. 

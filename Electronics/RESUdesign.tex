@@ -3,116 +3,40 @@
 
 \subsubsection{Overview}
 
-For this mission, we will again use RESU (Real-Time Environmental Sensing Unit), our flight computer to manage flight operations and send and receive commands from the ground. RESU is composed of two components: a Raspberry Pi 3 (RP3) and an Arduino Mega (Arduino) which interface via USB. The RESUs primary purposes during the flight will be to monitor environmental conditions inside the payload structure and inside the ISS module model and to control the astrobiology system. It will monitor temperature of the various subsystems including the solar cells, astrobiology collection system, MiniPix, and air pressure throughout the flight. Temperature of each of the 12 solar cells will be monitored by an individual thermistor. The voltage produced by each cell will also be monitored and recorded by the RESU via the Arduino. The RESU will use an accelerometer to confirm the activated state of the astrobiology system. All recorded data will continuously be written to an SD card mounted on a shield on top of the Arduino and to a removable USB flash drive connected to the raspberry pi. The RESU will by programmed to deploy the astrobiology system at the appropriate altitude as sensed by the atmospheric pressure sensors. The RESU will also accept discrete commands from the HASP systems to turn the astrobiology collection system on and off and to return the operation status of the astrobiology system.
-
-\iffalse
- During our last flight we only had one mechanism for storing data with no redundancy. This means that if one of our storage devices had been damaged or corrupted during flight, all of our data would have been lost. In order to harden our payload and ensure the safety of our data we will now store redundant copies of our data. One will be stored on the SD card directly on the Arduino and the other will be transferred to the RP3 for storage.
-\fi  
+For this mission, we will use RESU (Real-Time Environmental Sensing Unit), our flight computer, to manage flight operations and send and receive commands from the ground. RESU is composed of two components: a Raspberry Pi 3 (RP3) and an Arduino Mega (Arduino) which interface via USB. RESU's primary purposes during the flight will be to monitor environmental conditions inside the payload structure and inside the ISS module and to control the astrobiology system. It will monitor temperature of the various subsystems including the solar cells, astrobiology collection system, MiniPIX, and air pressure throughout the flight. The temperature of each the 12 solar cells will be indivdually monitored with a thermistor. The voltage produced by each cell will also be monitored and recorded by the RESU via the Arduino. The RESU will use an accelerometer to monitor the activated state of the astrobiology system. All recorded data will be continuously written to an SD card mounted on a shield on top of the Arduino and to a removable USB flash drive connected to the RP3. The RESU will be programmed to deploy the astrobiology system at the appropriate altitude as sensed by the atmospheric pressure sensor. The RESU will also accept discrete commands from the HASP systems to turn the astrobiology collection system on and off
 
 In order to maintain data integrity we will save the data recorded by the RESU to both the SD card of the Arduino and to the USB drive connected to the Raspberry Pi. Data will be written to a discrete data file for a given period of time and then the filename will be incremented and the following data will be written to a new file. In case the data collection process is corrupted for a given period of time, this period of corruption will not interfere with the collection of all previous data. 
 
 \subsubsection{The Sensors}
 
-Our payload will utilize 16 thermistors to measure temperature at various points in our payload. The decision to use thermistors was based primarily on the performance of the analog temperature sensors during our 2017 flight, during which several of those sensors had slight malfunctions, and the success of thermistors in our 2018 flight. Thermistors are able to accurately measure temperature in the range \SIrange{-55}{125}{\celsius} and should therefore be adequate for the conditions in the stratosphere. Pressure will be recorded from two digital pressure sensors, one low pressure sensor in the main payload structure which will record pressure in the range \SIrange{0}{3.44}{\kilo\pascal} and the second pressure sensor will be located inside the ISS module and record pressure in the range \SIrange{20}{110}{\kilo\pascal}. All sensor data will be UTC timestamped via the onboard real time clock and recorded to the SD card on the Arduino and USB drive attached to the Raspberry PI. To confirm the activated status of the astrobiology collection system, an accelerometer will be used to detect whether the collection arm is spinning or parked as is appropriate for the altitude of the payload. Each solar cell will also be monitored for temperature to aid in the calculation of efficiency of each cell. One MiniPix will be located inside the ISS module and an additional MiniPix will be located inside the main structure of the payload.
+Our payload will utilize 16 thermistors to measure temperature at various points in our payload. The decision to use thermistors was based primarily on the performance of the analog temperature sensors during our 2017 flight, during which several of those sensors had slight malfunctions, and the success of thermistors in our 2018 flight. Thermistors are able to accurately measure temperature in the range \SIrange{-55}{125}{\celsius} and should therefore be adequate for the conditions in the stratosphere. Pressure will be recorded from two digital pressure sensors, one low pressure sensor in the main payload structure which will record pressure in the \SIrange{0}{3.44}{\kilo\pascal} range, and the second pressure sensor will be located inside the ISS module and record pressure in the \SIrange{20}{110}{\kilo\pascal} range. All sensor data will be UTC timestamped via the onboard real time clock and recorded to the SD card on the Arduino and USB drive attached to the RP3. To confirm the activated status of the astrobiology collection system, an accelerometer will be used to detect whether the collection arm is spinning or parked as is appropriate for the altitude of the payload. Each solar cell will also be monitored for temperature to aid in the calculation of efficiency of each cell. One MiniPIX will be located inside the ISS module and an additional MiniPIX will be located inside the main structure of the payload.
 
 \begin{table}[h!]
 \centering
-\caption{Table of sensors that compose RESU}
+\caption{Sensors that compose RESU}
 \label{tab:Sensors}
 \bigskip
-\begin{tabular}{|c|c|c|c|}
-\hline
-\multicolumn{1}{|c|}{\bfseries Sensor} & {\bfseries Quantity} & {\bfseries Platform} & {\bfseries Purpose} \\
-\hline
-    Temperature          		& 16 & Arduino  		& Record temperature measurements  \\ \hline
-    Pressure (\SIrange{0}{3.44}{\kilo\pascal})        				& 1 & Arduino 		& Record lower pressure measurements \\ \hline
-    Pressure (\SIrange{20}{110}{\kilo\pascal})        				& 1 & Arduino 		& Record higher pressure measurements \\ \hline
-    Accelerometer       		& 1 & RP3    		& Report the activation state of astrobiology system \\ \hline    
-    Real Time Clock 				& 2 & Arduino/RP3 	& Record temperature compensated timestamps in CT \\\hline
-    MiniPIX         				& 2 & RP3     		& Cosmic ray detector \\ \hline
+\begin{tabular}{cccc}
+  \hline
+  \hline
+  \multicolumn{1}{c}{\bfseries Sensor} & {\bfseries Quantity} & {\bfseries Platform} & {\bfseries Purpose} \\
+  \hline
+  Thermistor          		& 16 & Arduino  		& Record temperature measurements  \\
+  Pressure (\SIrange{0}{3.44}{\kilo\pascal})        				& 1 & Arduino 		& Record lower pressure measurements \\
+  Pressure (\SIrange{20}{110}{\kilo\pascal})        				& 1 & Arduino 		& Record higher pressure measurements \\
+  Accelerometer       		& 1 & RP3    		& Report the current state of astrobiology system \\
+  Real Time Clock 				& 2 & Arduino/RP3 	& Record timestamps in UTC \\
+  MiniPIX         				& 2 & RP3     		& Cosmic ray detector \\
+  \hline
+  \hline
 \end{tabular}
 \end{table}
 
 
 \subsubsection{Space Constraints}
-Since half of the space inside the payload will be used by the astrobiology systems, we need to design our electronics to be relatively compact yet accessible for necessary modifications or repairs after testing. We will use one RP3 to both interface with two MiniPIX and store sensor and voltage data from the Arduino.  Also, in order to reduce the space required for the interface between the Arduino and all of the payload's sensors, we will use two layers of proto-shields to more effectively utilize vertical space. The RTC, pressure and humidity sensors will be mounted directly on the first shield while the temperature sensors will be mounted on the top most shield. 
+Since half of the space inside the payload will be used by the astrobiology systems, we need to design our electronics to be relatively compact yet accessible for necessary modifications or repairs after testing. We will use one RP3 to both interface with two MiniPIX and store sensor and voltage data from the Arduino.  Also, in order to reduce the space required for the interface between the Arduino and all of the payload's sensors, we will use two layers of proto-shields to more effectively utilize vertical space. The RTC  pressure sensors will be mounted directly on the first shield while the thermistors will be mounted on the top most shield. 
 
- \subsubsection{Powering It All Up}
-
+\subsubsection{Powering It Up}
  In order to stay within the power constraints, a robust power supply will need to  handle all the components of the payload.  The power supply we will be using is the PCM-DC-AT500 by WinSystems INC.  It offers one \SI{+5}{\volt} needed to power the payload's electronics.  This power supply could effectively take \SI{+30}{\volt} and step it up to the \SI{+12}{\volt} and \SI{+6}{\volt} outputs as needed. The power supply will also be able to step down to the \SI{+3.6 }{\volt} output as needed for sensors. One of the \SI{+12}{\volt} outputs goes to the Arduino since it can step down to the appropriate voltages internally while the other goes to a linear actuator for the astrobiology collection arm. Thermistors and pressure sensors will also receive power through the Arduino. A remaining \SI{+5 }{\volt} output is converted to a USB power cable for the RP3. 
- %more research needed regarding plans to ground components
+ %More research needed regarding plans to ground components
  %The power supply also has four ground outputs that will be used by each respective component. 
-
-\subsection{RESU Downlink Packets}
-
-Listing~\ref{Downlinks} is a sample of our proposed downlink data packet, values are included to the demonstrate expected number of characters but should not be considered expected or actual values. Included first is a format sample to enhance readability in this application which will not be included in the actual downlink data stream.
-
-\lstset{basicstyle=\small, numbers=left, xleftmargin=2em, frame=tb, label = Downlinks, framexleftmargin=1.5em}
-\begin{lstlisting}[caption = Sample of proposed downlink data packets ID: 15667 - 15669]
-<Format Sample>
-begin_packet
-|ID Number|Raspberry Pi Temp|MiniPix 0 Temp|MiniPix 1 Temp|ISS Temp|ISS Pressure
-|Accelerometer val x|Acc val y|Acc val z
-|Solar Cell Index 00:Temp,FF,Efficiency|Solar Cell Index 01:Temp,FF,Efficiency
-...
-|Solar Cell Index 10:Temp,FF,Efficiency|Solar Cell Index 11:Temp,FF,Efficiency
-|Timestamp|Date|
-end_packet
-<End Format Sample>
-...
-begin_packet
-|15667|55.2|40.5|44.5|25.0|101.35
-|1.00|-1.00|0.00
-|C00:30.50,0.50,0.15|C01:30.50,0.50,0.15|C02:30.50,0.50,0.15|C03:30.50,0.50,0.15
-|C04:30.50,0.50,0.15|C05:30.50,0.50,0.15|C06:30.50,0.50,0.15|C07:30.50,0.50,0.15
-|C08:30.50,0.50,0.15|C09:30.50,0.50,0.15|C10:30.50,0.50,0.15|C11:30.50,0.50,0.15
-|9:29:39|9/4/18|
-end_packet
-begin_packet
-|15668|55.2|40.5|44.5|25.0|101.35
-|1.00|-1.00|0.00
-|C00:30.50,0.50,0.15|C01:30.50,0.50,0.15|C02:30.50,0.50,0.15|C03:30.50,0.50,0.15
-|C04:30.50,0.50,0.15|C05:30.50,0.50,0.15|C06:30.50,0.50,0.15|C07:30.50,0.50,0.15
-|C08:30.50,0.50,0.15|C09:30.50,0.50,0.15|C10:30.50,0.50,0.15|C11:30.50,0.50,0.15
-|9:29:42|9/4/18|
-end_packet
-begin_packet
-|15669|55.2|40.5|44.5|25.0|101.35
-|1.00|-1.00|0.00
-|C00:30.50,0.50,0.15|C01:30.50,0.50,0.15|C02:30.50,0.50,0.15|C03:30.50,0.50,0.15
-|C04:30.50,0.50,0.15|C05:30.50,0.50,0.15|C06:30.50,0.50,0.15|C07:30.50,0.50,0.15
-|C08:30.50,0.50,0.15|C09:30.50,0.50,0.15|C10:30.50,0.50,0.15|C11:30.50,0.50,0.15
-|9:29:45|9/4/18|
-end_packet
-...
-\end{lstlisting}
-\medskip
-
-Each packet of data will be delimited by keywords \verb|begin_packet| and \verb|end_packet| so that parsing each file be easier.  During our previous flights, these data packets were crucial status updates to the state of our payload.  We will once again use them for the same purpose to keep a close eye on our payload.
-
-This year the data packets will contain information about the readings from temperatures on crucial devices such as the Raspberry Pi and MiniPix sensors, as well as temperature and pressure inside the ISS module, and accelerometer $x, y, z$ values of the sample collection arm. Additionally packets will contain values regarding the temperature, fill factor, and efficiency of each of the solar cells.  
-
-The first integer represents the ID of the packet.  Following the packet ID are temperature readings of the Raspberry Pi and both MiniPix, temperature and pressure within the ISS Module, astrobiology collection arm accelerometer $x, y, z$ values. Then follows the set of values for each of the twelve solar cells, which include the index, temperature, fill factor and efficiency of the cell. Included before the closing delimiter is the timestamp in $HH$:$MM$:$SS$ $MM$/$DD$/$YY$ at which the packet was written.  
-
-
-
-In addition to downlinking sensor data, we also want to downlink serial uplink commands as shown in listing \ref{Uplinks}.  
-
-\lstset{basicstyle=\small, numbers=left, frame=tb, linewidth=11.5cm, xleftmargin=.4\textwidth, label = Uplinks}
-\begin{lstlisting}[caption = Sample of received uplink commands in downlinked packets in SORA 2017~\cite{SORA}]
-...
-1
-2
-71
-FFFFFFFF
-3
-D
-A
-Received Command: 71
-...
-\end{lstlisting}
-\medskip
-
-Each line within a received uplink command represents the string of bytes that will be read by our payload.  The last line of the listing shows what command will be parsed and processed by RESU.  Table \ref{tab:All-Commands} shows all the possible commands that we are expecting to process. 
-
-

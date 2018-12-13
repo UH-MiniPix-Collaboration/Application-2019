@@ -51,3 +51,27 @@ The device will be configured via the device Python API wrapper provided by ADVA
 
 \subsubsection{Data Format}
 The data format for each frame of data is a plain text array with each value corresponding to the value at the corresponding pixel index in the detector. Upon the capture of a new frame the plain text array will be appended to the acquisition file stored on the SD card of the RP\num{3} on our payload. In a separate file various metadata will be stored for each frame including the detector threshold, acquisition time, acquisition mode etc. The plaintext array format means that each frame of data utilized approximately \SI{132}{\kilo\byte} of memory. In SORA \num{1.0}, a frame was saved roughly every six seconds, over the course of the roughly fourteen hour flight we had a total acquisition size of approximately \SI{1.1}{\giga\byte}. While this was a rather small total collection size, we could have further reduced our memory footprint by only storing pixel indices with non-zero time over threshold values i.e.\ storing data in a sparse matrix format. This is a route we will look into for SORA \num{2.0}.
+\subsection{Methods}
+    
+    We will be using four different types of solar cells with three panels per cell type, making a total of 12 arrays on board our payload. There will be one type of cell on each of three sides of the payload, 
+
+	Solar cells are characterized by their current vs voltage (IV) curve, which tells you the maximum power point (MPP), Vmax and Imax, open-circuit voltage (Voc) and short circuit current (Isc), leading to the fill factor (FF) and efficiency (PCE). This curve will be  generated using a variable resistor in series with two multimeters, one acting as voltmeter and the other an ammeter, and the solar cell in question, which will follow Ohm's law (1) V=IR. From the plot, Voc is seen when I=0, Isc is when V=0, and the MPP is where Vmax and Imax meet. The MPP can then tell us the efficiecy, which is defined as (2) MPP/Pin. The fill factor gives information on the "squarness" of the IV curve and is defined as (3) FF = MPP/VocIsc, and it is optimal to maximize the fill factor.
+
+    Before flight, every cell will be characterized with IV curves and microscopy, then IV curves will be recorded during flight along with temperature monitoring, and finally after recovery, each cell will be re characterized and once again viewed under the microscope to look for any physics defects. 
+    
+    With the HASP mission, we are going to compare fabricated organic polymer and perovskite solar cells against store bought amorphous silicon solar cells. Each of these cells will be analyzed before, during, and after exposure to the stratosphere. In analyzing our cells, we will measure the open circuit voltage, the short circuit current, then fill factor,  max power point, maximum conversion efficiency, and quantum efficiency.
+    In conjunction with our miniPIX detector, we will be analyzing the effect that cosmic ray bombardment has on our solar cells.  Additionally, we will watch for problems which arise due to UV-A, B, and C rays. We will use AFM after fabrication and after flight to determine effects from cosmics rays
+    
+
+
+Our fabricated polymer cells will be a traditional champion cell of Ag: / 3HT / PCBM / ITO / glass and will be fabricated in house using sputter coating and vapor evaporation.
+
+Our fabricated perovskite cell will use a similar set up as the polymer cell but with ITO / PEDOT:PSS / CH3NH3PbI3-xClx / PC70BM / Ca / Al and will also be fabricated in house.
+
+The amorphous silicon cells will also be purchased from a reasonable location with small enough panels
+\section{Resources}
+\begin{enumerate}
+    \item Solar Energy Materials and Solar Cells 182 (2018) 121–127
+DOI: 10.1016/j.solmat.2018.03.024
+    \item Kaltenbrunner, M. et al. Ultrathin and lightweight organic solar cells with high flexibility. Nat. Commun. 3:770 doi: 10.1038/ncomms1772 (2012)
+\end{enumerate}

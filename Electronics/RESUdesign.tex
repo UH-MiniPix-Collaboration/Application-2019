@@ -1,11 +1,11 @@
-\subsection{RESU Design}
+\subsection{SOCRATES Design}
 \label{sec:ElectronicsDesign}
 
 \subsubsection{Overview}
 
-For this mission, we will use RESU (Real-Time Environmental Sensing Unit), our flight computer, to manage flight operations and send and receive commands from the ground. RESU is composed of two components: a Raspberry Pi 3 (RP3) and an Arduino Mega (Arduino) which interface via USB. RESU's primary purposes during the flight will be to monitor environmental conditions inside the payload structure and inside the ISS module and to control the astrobiology system. It will monitor temperature of the various subsystems including the solar cells, astrobiology collection system, MiniPIX, and air pressure throughout the flight. The temperature of each the 12 solar cells will be indivdually monitored with a thermistor. The voltage produced by each cell will also be monitored and recorded by the RESU via the Arduino. The RESU will use an accelerometer to monitor the activated state of the astrobiology system. All recorded data will be continuously written to an SD card mounted on a shield on top of the Arduino and to a removable USB flash drive connected to the RP3. The RESU will be programmed to deploy the astrobiology system at the appropriate altitude as sensed by the atmospheric pressure sensor. The RESU will also accept discrete commands from the HASP systems to turn the astrobiology collection system on and off
+For this mission, we will use SOCRATES (System fOr Computing, Radiation, Astrobiology, Temperature, Environment and Solar), our flight computer, to manage flight operations and send and receive commands from the ground. SOCRATES is composed of two components: a Raspberry Pi 3 (RP3) and an Arduino Mega (Arduino) which interface via USB. SOCRATES' primary purposes during the flight will be to monitor environmental conditions inside the payload structure and inside the ISS module and to control the astrobiology system. It will also monitor temperature of the various subsystems including the solar cells, astrobiology collection system, MiniPIX, and air pressure throughout the flight. The temperature of each the 12 solar cells will be individually monitored with a thermistor. The voltage produced by each cell will also be monitored and recorded by SOCRATES via the Arduino. SOCRATES will use an accelerometer to monitor the activated state of the astrobiology system. All recorded data will be continuously written to an SD card mounted on a shield on top of the Arduino and to a removable USB flash drive connected to the RP3. SOCRATES will be programmed to deploy the astrobiology system at the appropriate altitude as sensed by the atmospheric pressure sensor. SOCRATES will also accept discrete commands from the HASP systems to turn the astrobiology collection system on and off.
 
-In order to maintain data integrity we will save the data recorded by the RESU to both the SD card of the Arduino and to the USB drive connected to the Raspberry Pi. Data will be written to a discrete data file for a given period of time and then the filename will be incremented and the following data will be written to a new file. In case the data collection process is corrupted for a given period of time, this period of corruption will not interfere with the collection of all previous data. 
+In order to maintain data integrity we will save the data recorded by SOCRATES to both the SD card of the Arduino and to the USB drive connected to the Raspberry Pi. Data will be written to a discrete data file for a given period of time and then the file name will be incremented and the following data will be written to a new file. In case the data collection process is corrupted for a given period of time, this period of corruption will not interfere with the collection of all previous data. 
 
 \subsubsection{The Sensors}
 
@@ -13,7 +13,7 @@ Our payload will utilize 16 thermistors to measure temperature at various points
 
 \begin{table}[h!]
 \centering
-\caption{Sensors that compose RESU}
+\caption{Sensors that compose SOCRATES}
 \label{tab:Sensors}
 \bigskip
 \begin{tabular}{cccc}
@@ -34,7 +34,7 @@ Our payload will utilize 16 thermistors to measure temperature at various points
 
 
 \subsubsection{Space Constraints}
-Since half of the space inside the payload will be used by the astrobiology systems, we need to design our electronics to be relatively compact yet accessible for necessary modifications or repairs after testing. We will use one RP3 to both interface with two MiniPIX and store sensor and voltage data from the Arduino.  Also, in order to reduce the space required for the interface between the Arduino and all of the payload's sensors, we will use two layers of proto-shields to more effectively utilize vertical space. The RTC  pressure sensors will be mounted directly on the first shield while the thermistors will be mounted on the top most shield. 
+Since half of the space inside the payload will be used by the astrobiology systems, we need to design our electronics to be relatively compact yet accessible for necessary modifications or repairs after testing. We will use one RP3 to both interface with two MiniPIX and store sensor and voltage data from the Arduino.  Also, in order to reduce the space required for the interface between the Arduino and all of the payload's sensors, we will use two layers of proto-shields to more effectively utilize vertical space. The RTC pressure sensors will be mounted directly on the first shield while the thermistors will be mounted on the top most shield. 
 
 \subsubsection{Powering It Up}
  In order to stay within the power constraints, a robust power supply will need to  handle all the components of the payload.  The power supply we will be using is the PCM-DC-AT500 by WinSystems INC.  It offers one \SI{+5}{\volt} needed to power the payload's electronics.  This power supply could effectively take \SI{+30}{\volt} and step it up to the \SI{+12}{\volt} and \SI{+6}{\volt} outputs as needed. The power supply will also be able to step down to the \SI{+3.6 }{\volt} output as needed for sensors. One of the \SI{+12}{\volt} outputs goes to the Arduino since it can step down to the appropriate voltages internally while the other goes to a linear actuator for the astrobiology collection arm. Thermistors and pressure sensors will also receive power through the Arduino. A remaining \SI{+5 }{\volt} output is converted to a USB power cable for the RP3. 

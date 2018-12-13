@@ -60,7 +60,7 @@ This year the data packets will contain information about the readings from temp
 
 The power supply unit (PSU) will use a +30V and ground line from the EDAC connection. The linear actuator of the collection system will use +12V and the collection arm servo motor will take a +6V connection. Other sensors will be powered through the Arduino taking +5V through the previously described USB connection.  
 
-We will use discrete commands in this mission. Two of the commands will be used to deploy and retract the astrobiology system. This is only in case of emergency if we notice that the system has not already deployed at the planned altitude as designed. The other two discrete channels will be used to turn on and off RESU in case that we notice an issue.
+We will use discrete commands in this mission. Two of the commands will be used to deploy and retract the astrobiology system. This is only in case of emergency if we notice that the system has not already deployed at the planned altitude as designed. The other two discrete channels will be used to turn on and off SOCRATES in case that we notice an issue.
 
 \begin{table}[!ht]
   \centering
@@ -74,8 +74,8 @@ We will use discrete commands in this mission. Two of the commands will be used 
     \hline
     Discrete 1 & Astro. System ON & f & Extends collection arm and activates rotation \\
     Discrete 2 & Astro. System OFF & n & Stops collection arm rotation and retracts arm \\
-    Discrete 3 & RESU ON & h & Powers up RESU \\
-    Discrete 4 & RESU OFF & p & Shuts down RESU \\
+    Discrete 3 & SOCRATES ON & h & Powers up SOCRATES \\
+    Discrete 4 & SOCRATES OFF & p & Shuts down SOCRATES \\
     \hline
     \hline
   \end{tabular}

@@ -2,60 +2,84 @@
 \label{sec:RadiationDesign}
 
 \subsubsection{MiniPIX Detector}
-The MiniPIX detector, shown in Figure~\ref{fig:Minipix} is a silicon-based hybrid pixel detector built by ADVACAM~\cite{advacam} that utilizes technology developed by the MediPIX2 collaboration at CERN~\cite{medipix}. The sensor is composed of a pixellated silicon sensor integrated with a single TimePIX readout chip (256 x 256) pixels with a pitch of \SI{55}{\micro\meter}, the layers of the detector are shown in Figure~\ref{fig:MinipixLayers}. The sensor is \SI{500}{\micro\meter} thick and uses a USB 2.0 interface with a readout rate up to 30 frames per second. Each pixel can be programmed to work in one of three modes: Single particle counting, Time-over-Threshold (TOT), or Time-of-Arrival (TOA). This device offers a variety of applications including X-ray and neutron imaging as well as particle identification by characterizing each particle due to their charge, energy, and direction.
+The MiniPIX detector is a silicon-based hyrbid pixel detector. The device is built by ADVACAM \cite{Advacam}  and utilizes technology developed by the Medipix Collaboration at CERN \cite{Medipix}. The sensor consists of a \num{256}x\num{256} array of pixels and a pitch of \SI{55}{\micro\meter}. A USB 2.0 connection is used to interface with the device, which provides power and data output. The primary use of the detector will be to characterize cosmic radiation by the type of particle and its incident energy.
+%The device is capable of operating in the following three different modes: single particle counting, Time-over-Threshold, and Time-of-Arrival.
+
+%Mention the solar cycle and how we'll compare to data from the previous missions
 
 \begin{figure}[H]
   \begin{minipage}[c]{0.40\linewidth}
-    \includegraphics[width=\linewidth]{Figures/Minipix.png}
-    \caption{Picture of a MiniPIX particle detector~\cite{advacam}.} %make sure to put figure names underneath the pictures
+    \includegraphics[width=\linewidth]{Figures/Minipix2.png}
+    \caption{Picture of a MiniPIX particle detector~\cite{Advacam}.}
     \label{fig:Minipix}
   \end{minipage}
   \hfill
   \begin{minipage}[c]{0.45\linewidth}
     \includegraphics[width=\linewidth]{Figures/MinipixLayers.png}
-    \caption{Hybrid pixel detector silicon sensor~\cite{silicon_sensor}.} %make sure to put figure names underneath the pictures
+    \caption{Layers that makeup the MiniPIX sensor.}
     \label{fig:MinipixLayers}
   \end{minipage}
 \end{figure}
 
-The MiniPIX registers ionized particles when the active material in the detector is transformed into a charge (the excitement of electron-hole pairs in the semiconductor). When these charges are collected, the Si bulk is then depleted by an applied bias voltage, which occurs when the electronics reads-out electron-hole pairs. If these pairs are above the threshold when collected by the pixel electronics, the count increases. The projection of the deposited charge is measured and the total energy deposited can be determined from the back-plane pulse amplitude. 
-
-When a particle is incident on the sensor, a particle track is produced along the path length through the sensor area. The path of a single particle through the sensor is called the particle track.  Each particle track may be identified as a ``cluster'' or continuous area of neighboring pixels in a given frame. Each individual cluster can be differentiated through statistical analysis to describe the shape and energy deposition, allowing us to distinguish between different types of radiation by organizing each cluster into aspecific morphological category. 
-%The feature parameters of this detector provides detailed information about total energy deposited by particles, and if only one particle is traced in the detector this tells us that slow heavy particles ionize more than fast moving ones. 
+When an ionizing particle hits the sensor, electron-hole pairs accumulate within the semiconducting material. The electronics reads-out the pairs by depleting the silicon with a bias voltage. If a charge is above the set threshold, the charge is counted. The energy deposited in a pixel can be determined from the back-plane pulse amplitude. Particles incident on the sensor appear as pixel clusters, which is defined as a continuous area of activated pixels. By analyzing these clusters, the incident particle can be identified. The morphology of the cluster gives information regarding the type of particle as well as the angle at which the particle was incident upon the detector. 
 
 \begin{figure}[h]
-  \begin{minipage}[c]{0.49\linewidth}
-    \includegraphics[scale=1, width=.5\textwidth]{Figures/MinipixCaseAssembly.pdf}
-    \caption{3D rendering of the MiniPIX case and heat sink assembly.}
-    \label{fig:CaseAssembly}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[c]{0.49\linewidth}
-    \centering
-    \includegraphics[scale=1, width=.5\textwidth]{Figures/duck.jpg}
-    \caption{Picture of the MiniPIX mounted in the case and heat sink assembly on SORA 1.0.}
-    \label{fig:CaseAssembly2}
-  \end{minipage}
+    \includegraphics[scale=1, width=.75\textwidth]{Figures/Tracks.png}
+    \caption{Examples of different track types from data collected by a MiniPIX.}
+    \label{fig:Tracks}
 \end{figure}
 
-The primary purpose of the MiniPIX is to detect four specific types of radiation: alpha $(\alpha)$, electron $({e^-})$, gamma $({\gamma})$, and muon $({\mu})$. By comparing the results of the flight to results obtained from simulations, an estimate regarding the percent composition of the detector hits can be made.
-
-The MiniPIX case and heat sink assembly shown in Figure~\ref{fig:CaseAssembly} is designed to protect the device from any moisture in the atmosphere. The case and lid will be 3D printed using ABS plastic and the heat sink will be composed of two large sheets and a small block of aluminum metal which will all be mounted to the roof of the payload. Thermal paste will be applied at every contact point between the device and each of the aluminum pieces to allow for optimal thermal conduction and radiation of heat away from the MiniPIX. A picture of the MiniPIX device inside the case and heat sink assembly used on SORA 1.0 is shown in Figure~\ref{fig:CaseAssembly2}. Considering the success of that setup, we will mimic a similar configuration on SORA 2.0.
-
 \subsubsection{Calibration}   
-The appropriate calibration of the MiniPIX detector will be applied at The University of Houston by Dr.~Stuart P.~George, a collaborator within the MediPIX Collaboration. The source calibration will be applied using the \SI{60}{\keV} {\ce{^241Am} decay line, \ce{Sn} Fluorescence and \ce{^55Fe} gamma rays. The TimePIX hybrid pixel detector consists of \num{65536} silicon p-n diodes, with each containing its own individual processing circuit. The response of each pixel can never be identical, thus a calibration must be performed for each individual pixel. Dr.~George will calibrate the pixel energy threshold from DAC counts to energy~\cite{stuartthesis}. The threshold will be set at \SI{4}{\keV}, just above the noise level of the detector. The set threshold energy of the TimePIX chip determines what energies of particles are allowed to be measured by the detector. Energy measurements in the detector are accounted by measuring the charge collected in each individual pixel. The sensor's bias voltage will be \SI{200}{\volt} to ensure that the sensor was completely depleted. 
+It is necessary to calibrate the sensor. The calibration procedure is rather sophisticated, so the calibration will be applied by Dr. Stuart P. George at the University of Houston. Dr. George is a member of the Medipix Collaboration. The general outline of the calibration is as follows. A source calibration is applied by using a \SI{60}{\keV}{\ce{^241Am} decary line, \ce{Sn} Flourescence and \ce{^55Fe} gamma rays. The pixel detector consists of \num{65536} silicon p-n dioded, each containing its own individual processing circuit. The response of each pixel can never to identical to one another, so a calibration mut be performed on each pixel. Dr. George will calibrate each pixel energy threshold from DAC counts to energy \cite{StuartThesis}. The threshold of the sensor will be set to \SI{4}{\keV}, which sufficiently filters out background noise. The bias voltage of the sensor will be set to \SI{200}{\volt}, which guarantees that the silicon is completely depleted while reading out the charge.
   
 \subsubsection{Collection Parameters}
 % Put the settings for the minipix shutter time, bias voltage etc. here
-The device will be configured via the device Python API wrapper provided by ADVACAM. Acquisition parameters will be determined through testing. This time must be chosen as a balance between too many individual frames with little to no data, which would take up a lot of storage space, and individual frames that are so crowded with interactions that they are unreadable due to a large number of crossed tracks. Upon completing an acquisition, the device enters a manufacturer-set dormant state for approximately two seconds, which will be utilized as cool-down period and to record the internal temperature of the device into a .csv file.
+ADVACAM has developed a Python API to configure the device and its acquisition parameters. The shutter speed of the device controls the rate at which data is output from the device. The shutter speed controls the exposure time of the sensor before saving the data to a frame. Once the data is saved, the device enters manufacturer-set dormant period, which lasts for approximately two seconds. This time will be utilized as a cool-down period for the device. The value of the shutter speed is highly dependent on the application of the sensor. Within the context of HASP, we expect high radiation exposure which will require a quicker shutter speed. This is to the fact that if the shutter speed is too long, the sensor become overcrowded and clusters become difficult or impossible to analyze. However, if the shutter speed is too short, there will be many frames with little to no data, which will use a large amount of storage space. Based off of previous SORA missions, a shutter speed of a few seconds is sufficient for our application. The exact shutter speed will be determined through testing and may be different for each device we use.
 
 \subsubsection{Data Format}
-The data format for each frame of data is a plain text array with each value corresponding to the value at the corresponding pixel index in the detector. Upon the capture of a new frame the plain text array will be appended to the acquisition file stored on the SD card of the RP\num{3} on our payload. In a separate file various metadata will be stored for each frame including the detector threshold, acquisition time, acquisition mode etc. The plaintext array format means that each frame of data utilized approximately \SI{132}{\kilo\byte} of memory. In SORA \num{1.0}, a frame was saved roughly every six seconds, over the course of the roughly fourteen hour flight we had a total acquisition size of approximately \SI{1.1}{\giga\byte}. While this was a rather small total collection size, we could have further reduced our memory footprint by only storing pixel indices with non-zero time over threshold values i.e.\ storing data in a sparse matrix format. This is a route we will look into for SORA \num{2.0}.
-\subsection{Methods}
-    
-    We will be using four different types of solar cells with three panels per cell type, making a total of 12 arrays on board our payload. There will be one type of cell on each of three sides of the payload, 
+The data frames are stored as plain text values where each value corresponds to a value from a pixel on the pixel array. In a separate file, metadata such as acquisition type, shutter speed, bias voltage, and other parameters are recorded for each frame. Both the data file and the metadata file will be stored on the RP\num{3} and the various redundant storage systems we implement. The MiniPIX data from previous missions used about \SIrange{1}{2}{\giga\byte}. For the 2019 mission, we expect about double that value due to our use of two MiniPIX devices.
 
-	Solar cells are characterized by their current vs voltage (IV) curve, which tells you the maximum power point (MPP), Vmax and Imax, open-circuit voltage (Voc) and short circuit current (Isc), leading to the fill factor (FF) and efficiency (PCE). This curve will be  generated using a variable resistor in series with two multimeters, one acting as voltmeter and the other an ammeter, and the solar cell in question, which will follow Ohm's law (1) V=IR. From the plot, Voc is seen when I=0, Isc is when V=0, and the MPP is where Vmax and Imax meet. The MPP can then tell us the efficiecy, which is defined as (2) MPP/Pin. The fill factor gives information on the "squarness" of the IV curve and is defined as (3) FF = MPP/VocIsc, and it is optimal to maximize the fill factor.
+\subsubsection{Structure}
+The MiniPIX outside of the ISS module will be contained within a small case plastic case to protect the device from atmospheric moisture. Thermal paste will be used to fix the MiniPIX on a small block of aluminum, which will behave as a heat sink. This simple setup has proven to work on previous missions and is shown in Figure \ref{fig:CaseAssembly}.
+\begin{figure}[h]
+    \includegraphics[scale=1, width=.25\textwidth]{Figures/MinipixCaseAssembly.pdf}
+    \caption{Examples of different track types from data collected by a MiniPIX.}
+    \label{fig:CaseAssembly}
+\end{figure}
+
+\subsubsection{ISS Module}
+\label{subsec:ISSModule}
+As part of the radiation subsystem, the payload will include a capsule intended to mimic the structure of one of NASA's modules on the ISS.
+The method deployed by NASA and other agencies is called ``Stuffed Whipple'' shielding and is deployed in ISS modules that are at highest risk of impact \cite{NASAShielding}.
+This module will remain at atmospheric pressure throughout the entire flight in attempt to model the environment as closely as possible.
+Inside the capsule will be a scintillated MiniPIX that will record the radiation environment within the module.
+The scintillated MiniPIX will measure the neutrons within the ISS structure in attempt to determine the exposure within the structure.
+
+The materials that make-up the module will be those used in the outer walls on the ISS and will have the same thickness.
+The main differences in structure will be the lack of standoffs and the lack of a multi-layer insulator (MLI) in our module.
+The walls of the ISS have standoffs between layers of materials, which increases the total wall thickness to about one foot.
+Additionally, the MLI used by NASA is not available commercially.
+%Due to being in space, the gaps between the layers are a vacuum.
+In the interest of saving space, we will not include the standoffs, and all materials will be layered on one another in the same order as they are used on the ISS.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\linewidth]{Figures/MaterialCrossSection.png}
+  \caption{Layers and thicknesses of the materials that will be used to construct the ISS module. From top to bottom: aluminum 6061-T6, six layers of Nextel AF62, six layers of Kevlar fabric, and aluminum 2219-T87. The atmosphere is contained by the \SI{4.8}{\milli\meter} layer of aluminum \cite{NASAPP}. All measurements are in \si{\milli\meter}.} 
+  \label{fig:ISSLayers}
+\end{figure}
+
+%To construct the module, a rectangular box of aluminum will be constructed with one missing face, constituting the inner aluminum box that will contain the pressurized environment. The 
+
+\subsubsection{Scintillated MiniPIX}
+The MiniPIX's sensor can only interact with charged particles. In order to measure neutrons with the MiniPIX, a scintillator is rerquired. The scintillator will interact with the neutrons and produce a specific signature of particles which can be measured by the MiniPIX. Uher et al. \cite{Uher} used a similar method, but with a lithium-based scintillator. We will use a boron-loaded plastic scintillator \cite{BoronScintillator} to cover exactly half of the MiniPIX sensor. The reation between the Boron-10 nucleus and a thermal neutron is \[\ce{^10B + n -> ^7Li + ^4He + \gamma (\SI{480}{\kilo\eV})}\] according to Pawelczak et al \cite{Pawelczak}. This scintillator was chosen due to its large reaction cross-section for thermal neutron capture and its emission of light charged particles. This larger rwaction cross-section increases the probability that the neutron will produce particles that can be measured by the MiniPIX.
+
+By covering half of the sensor, we can compare the uncovered half with the data recorded by the MiniPIX outside of the ISS module.
+
+\subsubsection{Organic Photovoltaic Cells}    
+We will be using four different types of solar cells with three panels per cell type, making a total of 12 arrays on board our payload. There will be one type of cell on each of three sides of the payload, 
+
+Solar cells are characterized by their current vs voltage (IV) curve, which tells you the maximum power point (MPP), Vmax and Imax, open-circuit voltage (Voc) and short circuit current (Isc), leading to the fill factor (FF) and efficiency (PCE). This curve will be  generated using a variable resistor in series with two multimeters, one acting as voltmeter and the other an ammeter, and the solar cell in question, which will follow Ohm's law (1) V=IR. From the plot, Voc is seen when I=0, Isc is when V=0, and the MPP is where Vmax and Imax meet. The MPP can then tell us the efficiecy, which is defined as (2) MPP/Pin. The fill factor gives information on the "squarness" of the IV curve and is defined as (3) FF = MPP/VocIsc, and it is optimal to maximize the fill factor.
 
     Before flight, every cell will be characterized with IV curves and microscopy, then IV curves will be recorded during flight along with temperature monitoring, and finally after recovery, each cell will be re characterized and once again viewed under the microscope to look for any physics defects. 
     
@@ -68,10 +92,4 @@ Our fabricated polymer cells will be a traditional champion cell of Ag: / 3HT / 
 
 Our fabricated perovskite cell will use a similar set up as the polymer cell but with ITO / PEDOT:PSS / CH3NH3PbI3-xClx / PC70BM / Ca / Al and will also be fabricated in house.
 
-The amorphous silicon cells will also be purchased from a reasonable location with small enough panels
-\section{Resources}
-\begin{enumerate}
-    \item Solar Energy Materials and Solar Cells 182 (2018) 121–127
-DOI: 10.1016/j.solmat.2018.03.024
-    \item Kaltenbrunner, M. et al. Ultrathin and lightweight organic solar cells with high flexibility. Nat. Commun. 3:770 doi: 10.1038/ncomms1772 (2012)
-\end{enumerate}
+The amorphous silicon cells will also be purchased from a reasonable location with small enough panels.

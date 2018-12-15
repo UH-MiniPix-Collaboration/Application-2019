@@ -2,10 +2,8 @@
 \label{sec:RadiationDesign}
 
 \subsubsection{MiniPIX Detector}
-The MiniPIX detector is a silicon-based hyrbid pixel detector. The device is built by ADVACAM \cite{Advacam}  and utilizes technology developed by the Medipix Collaboration at CERN \cite{Medipix}. The sensor consists of a \num{256}x\num{256} array of pixels and a pitch of \SI{55}{\micro\meter}. A USB 2.0 connection is used to interface with the device, which provides power and data output. The primary use of the detector will be to characterize cosmic radiation by the type of particle and its incident energy.
+The MiniPIX detector is a silicon-based hyrbid pixel detector founded on Timepix technology. The device is built by ADVACAM \cite{Advacam}  and utilizes technology developed by the Medipix Collaboration at CERN \cite{Medipix}. The sensor consists of a \num{256}x\num{256} array of pixels and a pitch of \SI{55}{\micro\meter}. A USB 2.0 connection is used to interface with the device, which provides power and data output. The primary use of the detector will be to characterize cosmic radiation by the type of particle and its incident energy.
 %The device is capable of operating in the following three different modes: single particle counting, Time-over-Threshold, and Time-of-Arrival.
-
-%Mention the solar cycle and how we'll compare to data from the previous missions
 
 \begin{figure}[H]
   \begin{minipage}[c]{0.40\linewidth}
@@ -22,6 +20,10 @@ The MiniPIX detector is a silicon-based hyrbid pixel detector. The device is bui
 \end{figure}
 
 When an ionizing particle hits the sensor, electron-hole pairs accumulate within the semiconducting material. The electronics reads-out the pairs by depleting the silicon with a bias voltage. If a charge is above the set threshold, the charge is counted. The energy deposited in a pixel can be determined from the back-plane pulse amplitude. Particles incident on the sensor appear as pixel clusters, which is defined as a continuous area of activated pixels. By analyzing these clusters, the incident particle can be identified. The morphology of the cluster gives information regarding the type of particle as well as the angle at which the particle was incident upon the detector. 
+
+Detectors using Timepix technology are used to measure radiation aboard the ISS. Since the University of Houston is a member of the Medipix Collaboration, scientists at the University of Houston work with preparing Medpix devices to be used aboard the ISS. As a result, the UH HASP team may be able to work with these scientists and compare data gathered from the mockup ISS module to data from the ISS.
+
+Due to the SORA 3 mission being a continuation of previous missions, we have the opportunity to compare data from previous flights. For example, this will allow us to observe how data regarding particle counts and dose changes with the solar cycle. Hathaway \cite{Hathaway} has shown that a direct relationship exists between the development of the solar cycle and neutron counts.
 
 \begin{figure}[h]
     \includegraphics[scale=1, width=.75\textwidth]{Figures/Tracks.png}
